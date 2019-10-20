@@ -1,4 +1,18 @@
-;; Zanders emacs config
+;;
+;;
+;;  ▓█████  ███▄ ▄███▓ ▄▄▄       ▄████▄    ██████
+;;   ▓█   ▀ ▓██▒▀█▀ ██▒▒████▄    ▒██▀ ▀█  ▒██    ▒
+;;   ▒███   ▓██    ▓██░▒██  ▀█▄  ▒▓█    ▄ ░ ▓██▄
+;;   ▒▓█  ▄ ▒██    ▒██ ░██▄▄▄▄██ ▒▓▓▄ ▄██▒  ▒   ██▒
+;;   ░▒████▒▒██▒   ░██▒ ▓█   ▓██▒▒ ▓███▀ ░▒██████▒▒
+;;   ░░ ▒░ ░░ ▒░   ░  ░ ▒▒   ▓▒█░░ ░▒ ▒  ░▒ ▒▓▒ ▒ ░
+;;    ░ ░  ░░  ░      ░  ▒   ▒▒ ░  ░  ▒   ░ ░▒  ░ ░
+;;      ░   ░      ░     ░   ▒   ░        ░  ░  ░
+;;      ░  ░       ░         ░  ░░ ░            ░
+;;                               ░
+;;
+;; https://github.com/zanderhavgaard/emacs-config
+
 
 ;; ========== package stuff ==========
 
@@ -21,14 +35,6 @@
 
 (eval-when-compile
   (require 'use-package))
-
-
-; enable rainbow delimiters
-; (require 'rainbow-delimiters)
-; use in all modes
-; (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-; use in programmming related modes?
-; (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 ;; ========== choose to be evil ==========
 
@@ -99,6 +105,29 @@
 ;; hide minor modes from the modeline
 (use-package diminish
   :ensure t)
+
+;; draw a nice vertical line instead of pagebreak char
+(use-package page-break-lines
+  :ensure t)
+
+;; add icons
+(use-package all-the-icons
+  :ensure t)
+
+;; nicer splash screen
+(use-package dashboard
+  :ensure t
+  :config
+  (setq dashboard-banner-logo-title "EVIL mode is the only mode!")
+  (setq dashboard-startup-banner 'logo)
+  (setq dashboard-set-file-icons t)
+  (setq dashboard-set-heading-icons t)
+  (dashboard-setup-startup-hook))
+
+
+
+
+
 
 ;; =========== font stuff ==========
 
@@ -186,19 +215,32 @@
 
 ;; git integration
 (use-package magit
+  :ensure t
   :bind (("C-M-g" . magit-status)))
 
+;; show git changes in the fringe
+(use-package diff-hl
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook 'diff-hl-mode))
+
+;; rainbows!
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
 ;; project management, seems useful, not quite sure what it does yet...
-;; (use-package projectile
-;;   :ensure t
-;;   :diminish projectile-mode
-;;   :bind
-;;   (("C-c p f" . helm-projectile-find-file)
-;;    ("C-c p p" . helm-projectile-switch-project)
-;;    ("C-c p s" . projectile-save-project-buffers))
-;;   :config
-;;   (projectile-mode +1)
-;; )
+(use-package projectile
+  :ensure t
+  :diminish projectile-mode
+  :bind
+  (("C-c p f" . helm-projectile-find-file)
+   ("C-c p p" . helm-projectile-switch-project)
+   ("C-c p s" . projectile-save-project-buffers))
+  :config
+  (projectile-mode +1)
+)
 
 
 ;; fuzzy completion framework
@@ -225,10 +267,10 @@
 
 
 ;; combine projectile and helm
-;; (use-package helm-projectile
-;;   :ensure t
-;;   :config
-;;   (helm-projectile-on))
+(use-package helm-projectile
+  :ensure t
+  :config
+  (helm-projectile-on))
 
 
 
