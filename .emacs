@@ -20,10 +20,10 @@
 (require 'package)
 
 ;; add add-ons repos
-(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
 
 ;; initialize packages
 (package-initialize)
@@ -67,6 +67,8 @@
   ;(load-theme 'doom-one t)
   (load-theme 'doom-dracula t)
   (doom-themes-visual-bell-config)
+  (doom-themes-neotree-config)
+  (doom-themes-org-config)
   )
 
 
@@ -97,16 +99,10 @@
        (abbreviate-file-name (buffer-file-name))
        "%b"))))
 
-;; one dark mode line theme
-(use-package smart-mode-line-atom-one-dark-theme
-  :ensure t)
-
-;; nicer mode-line
-(use-package smart-mode-line
+;; nicer modeline
+(use-package doom-modeline
   :ensure t
-  :config
-  (setq sml/theme 'atom-one-dark)
-  (add-hook 'after-init-hook 'sml/setup))
+  :hook (after-init . doom-modeline-mode))
 
 ;; hide minor modes from the modeline
 (use-package diminish
@@ -130,10 +126,15 @@
   (setq dashboard-set-heading-icons t)
   (dashboard-setup-startup-hook))
 
-
-
-
-
+;; contrast non-editor buffers
+(use-package solaire-mode
+  :ensure t
+  :hook
+  ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
+  (minibuffer-setup . solaire-mode-in-minibuffer)
+  :config
+  (solaire-global-mode +1)
+  (solaire-mode-swap-bg))
 
 ;; =========== font stuff ==========
 
@@ -239,9 +240,9 @@
   :ensure t
   :diminish projectile-mode
   :bind
-  (("C-c p f" . helm-projectile-find-file)
-   ("C-c p p" . helm-projectile-switch-project)
-   ("C-c p s" . projectile-save-project-buffers))
+  ;; (("C-c p f" . helm-projectile-find-file)
+  ;;  ("C-c p p" . helm-projectile-switch-project)
+  ;;  ("C-c p s" . projectile-save-project-buffers))
   :config
   (projectile-mode +1)
 )
@@ -332,7 +333,7 @@
     ("2d1fe7c9007a5b76cea4395b0fc664d0c1cfd34bb4f1860300347cdad67fb2f9" "f2b83b9388b1a57f6286153130ee704243870d40ae9ec931d0a1798a5a916e76" "0d087b2853473609d9efd2e9fbeac088e89f36718c4a4c89c568dd1b628eae41" "071f5702a5445970105be9456a48423a87b8b9cfa4b1f76d15699b29123fb7d8" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "bc75dfb513af404a26260b3420d1f3e4131df752c19ab2984a7c85def9a2917e" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
  '(package-selected-packages
    (quote
-    (smart-mode-line-atom-one-dark-theme smart-mode-line-atome-one-dark-theme use-package smart-mode-line doom-themes))))
+    (doom-modeline smart-mode-line-atom-one-dark-theme smart-mode-line-atome-one-dark-theme use-package smart-mode-line doom-themes))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
