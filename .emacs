@@ -14,7 +14,7 @@
 ;; https://github.com/zanderhavgaard/emacs-config
 
 
-;; ========== package stuff ==========
+;; ========== package management stuff ==========
 
 ;; use package manager
 (require 'package)
@@ -33,6 +33,7 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+;; install use-package
 (eval-when-compile
   (require 'use-package))
 
@@ -55,6 +56,11 @@
   :config
   (evilnc-default-hotkeys))
 
+(use-package evil-multiedit
+  :ensure t
+  :config
+  (evil-multiedit-default-keybinds)
+  )
 
 ;; =========== theme ==========
 
@@ -81,10 +87,12 @@
 
 ;; highlight current line
 (global-hl-line-mode +1)
-;; enable line numbers in the margin
-(line-number-mode +1)
 ;; enable line numbers in the modeline
 (global-display-line-numbers-mode 1)
+;; use relative line numbers
+(setq display-line-numbers-type 'relative)
+;; enable line numbers in the margin
+(line-number-mode +1)
 ;; enable column number in the modeline
 (column-number-mode t)
 ;; shows the size of the buffer in the modeline
@@ -136,6 +144,13 @@
   (solaire-global-mode +1)
   (solaire-mode-swap-bg))
 
+;; draw indent guides #need for yaml...
+(use-package highlight-indent-guides
+  :ensure t
+  :config
+  (setq highlight-indent-guides-method 'character)
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
+
 ;; =========== font stuff ==========
 
 ;; set font
@@ -146,8 +161,6 @@
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
-
-
 
 ;; ========== misc ==========
 
@@ -277,6 +290,7 @@
   :config
   (helm-projectile-on))
 
+;; side panel file browser
 (use-package neotree
   :ensure t
   :config
@@ -286,7 +300,6 @@
   (evil-leader/set-key
     "m"  'neotree-toggle
     "n"  'neotree-project-dir)
-
   (setq projectile-switch-project-action 'neotree-projectile-action)
   (add-hook 'neotree-mode-hook
             (lambda ()
@@ -297,10 +310,8 @@
               (define-key evil-normal-state-local-map (kbd "m") 'neotree-rename-node)
               (define-key evil-normal-state-local-map (kbd "c") 'neotree-create-node)
               (define-key evil-normal-state-local-map (kbd "d") 'neotree-delete-node)
-
               (define-key evil-normal-state-local-map (kbd "s") 'neotree-enter-vertical-split)
               (define-key evil-normal-state-local-map (kbd "S") 'neotree-enter-horizontal-split)
-
               (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter))))
 
 ;; run emacs as a deamon
