@@ -279,6 +279,7 @@
 (use-package neotree
   :ensure t
   :config
+  (setq-default neo-show-hidden-files t)
   (global-set-key [f8] 'neotree-toggle)
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
   (evil-leader/set-key
