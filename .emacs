@@ -176,7 +176,7 @@
 (global-auto-revert-mode t)
 
 ;; set tabs to be 4 spaces
-(setq-default tab-width 4
+(setq-default tab-width 2
               indent-tabs-mode nil)
 
 ;; when closing files, remove excess whitepace
