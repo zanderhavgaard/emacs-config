@@ -38,6 +38,13 @@
 
 ;; ========== choose to be evil ==========
 
+;; enable evil-leader before evil, so it is avilable in every evil buffer
+(use-package evil-leader
+  :ensure t
+  :config
+  (evil-leader/set-leader "SPC")
+  (global-evil-leader-mode))
+
 (use-package evil
   :ensure t
   :config
@@ -47,6 +54,7 @@
   :ensure t
   :config
   (evilnc-default-hotkeys))
+
 
 ;; =========== theme ==========
 
@@ -89,10 +97,6 @@
        (abbreviate-file-name (buffer-file-name))
        "%b"))))
 
-;; powerline mode-line theme
-;(use-package smart-mode-line-powerline-theme
-;  :ensure t)
-
 ;; one dark mode line theme
 (use-package smart-mode-line-atom-one-dark-theme
   :ensure t)
@@ -102,7 +106,6 @@
   :ensure t
   :config
   (setq sml/theme 'atom-one-dark)
-  ;(setq sml/theme 'powerline)
   (add-hook 'after-init-hook 'sml/setup))
 
 ;; hide minor modes from the modeline
@@ -142,8 +145,6 @@
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
-
-
 
 
 
@@ -280,7 +281,25 @@
   :config
   (global-set-key [f8] 'neotree-toggle)
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-  )
+  (evil-leader/set-key
+    "m"  'neotree-toggle
+    "n"  'neotree-project-dir)
+
+  (setq projectile-switch-project-action 'neotree-projectile-action)
+  (add-hook 'neotree-mode-hook
+            (lambda ()
+              (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+              (define-key evil-normal-state-local-map (kbd "I") 'neotree-hidden-file-toggle)
+              (define-key evil-normal-state-local-map (kbd "z") 'neotree-stretch-toggle)
+              (define-key evil-normal-state-local-map (kbd "R") 'neotree-refresh)
+              (define-key evil-normal-state-local-map (kbd "m") 'neotree-rename-node)
+              (define-key evil-normal-state-local-map (kbd "c") 'neotree-create-node)
+              (define-key evil-normal-state-local-map (kbd "d") 'neotree-delete-node)
+
+              (define-key evil-normal-state-local-map (kbd "s") 'neotree-enter-vertical-split)
+              (define-key evil-normal-state-local-map (kbd "S") 'neotree-enter-horizontal-split)
+
+              (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter))))
 
 ;; run emacs as a deamon
 ; (require 'server)
@@ -309,7 +328,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("f2b83b9388b1a57f6286153130ee704243870d40ae9ec931d0a1798a5a916e76" "0d087b2853473609d9efd2e9fbeac088e89f36718c4a4c89c568dd1b628eae41" "071f5702a5445970105be9456a48423a87b8b9cfa4b1f76d15699b29123fb7d8" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "bc75dfb513af404a26260b3420d1f3e4131df752c19ab2984a7c85def9a2917e" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
+    ("2d1fe7c9007a5b76cea4395b0fc664d0c1cfd34bb4f1860300347cdad67fb2f9" "f2b83b9388b1a57f6286153130ee704243870d40ae9ec931d0a1798a5a916e76" "0d087b2853473609d9efd2e9fbeac088e89f36718c4a4c89c568dd1b628eae41" "071f5702a5445970105be9456a48423a87b8b9cfa4b1f76d15699b29123fb7d8" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "bc75dfb513af404a26260b3420d1f3e4131df752c19ab2984a7c85def9a2917e" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
  '(package-selected-packages
    (quote
     (smart-mode-line-atom-one-dark-theme smart-mode-line-atome-one-dark-theme use-package smart-mode-line doom-themes))))
