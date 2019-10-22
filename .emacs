@@ -41,9 +41,12 @@
 (use-package evil
   :ensure t
   :config
-  (evil-mode t)
-  )
+  (evil-mode t))
 
+(use-package evil-nerd-commenter
+  :ensure t
+  :config
+  (evilnc-default-hotkeys))
 
 ;; =========== theme ==========
 
@@ -272,7 +275,12 @@
   :config
   (helm-projectile-on))
 
-
+(use-package neotree
+  :ensure t
+  :config
+  (global-set-key [f8] 'neotree-toggle)
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+  )
 
 ;; run emacs as a deamon
 ; (require 'server)
@@ -283,6 +291,11 @@
 ;; skip prompt and kill current buffer
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 
+;; easier switching between splits
+(define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
+(define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
+(define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
+(define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
 
 
 ;; ============================================================
