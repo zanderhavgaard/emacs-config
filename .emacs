@@ -11,6 +11,7 @@
 ;;      ░  ░       ░         ░  ░░ ░            ░
 ;;                               ░
 ;;
+;; Zander's Emacs config
 ;; https://github.com/zanderhavgaard/emacs-config
 
 
@@ -54,7 +55,11 @@
 (use-package evil-nerd-commenter
   :ensure t
   :config
-  (evilnc-default-hotkeys))
+  (evil-leader/set-key
+    "c SPC" 'evilnc-comment-or-uncomment-lines
+    "c p" 'evilnc-comment-or-uncomment-paragraphs
+    )
+  )
 
 (use-package evil-multiedit
   :ensure t
@@ -70,10 +75,10 @@
   :config
   (setq doom-themes-enable-bold t
     doom-themes-enable-italic t)
-  ;(load-theme 'doom-one t)
   (load-theme 'doom-dracula t)
   (doom-themes-visual-bell-config)
   (doom-themes-neotree-config)
+  ;; (doom-themes-treemacs-config)
   (doom-themes-org-config)
   )
 
@@ -111,10 +116,6 @@
 (use-package doom-modeline
   :ensure t
   :hook (after-init . doom-modeline-mode))
-
-;; hide minor modes from the modeline
-(use-package diminish
-  :ensure t)
 
 ;; draw a nice vertical line instead of pagebreak char
 (use-package page-break-lines
@@ -234,7 +235,11 @@
 ;; git integration
 (use-package magit
   :ensure t
-  :bind (("C-M-g" . magit-status)))
+  :config
+  (evil-leader/set-key
+    "g s" 'magit-status
+    )
+  )
 
 ;; show git changes in the fringe
 (use-package diff-hl
@@ -247,19 +252,6 @@
   :ensure t
   :config
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
-
-;; project management, seems useful, not quite sure what it does yet...
-(use-package projectile
-  :ensure t
-  :diminish projectile-mode
-  :bind
-  ;; (("C-c p f" . helm-projectile-find-file)
-  ;;  ("C-c p p" . helm-projectile-switch-project)
-  ;;  ("C-c p s" . projectile-save-project-buffers))
-  :config
-  (projectile-mode +1)
-)
-
 
 ;; fuzzy completion framework
 (use-package helm
@@ -283,12 +275,22 @@
   (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
   )
 
-
 ;; combine projectile and helm
 (use-package helm-projectile
   :ensure t
   :config
   (helm-projectile-on))
+
+;; project management, seems useful, not quite sure what it does yet...
+(use-package projectile
+  :ensure t
+  :config
+  (evil-leader/set-key
+    "p p" 'helm-projectile-switch-project
+    "p f" 'helm-projectile-find-file
+    "p s" 'helm-projectile-save-buffers
+    )
+  (projectile-mode +1))
 
 ;; side panel file browser
 (use-package neotree
@@ -312,11 +314,37 @@
               (define-key evil-normal-state-local-map (kbd "d") 'neotree-delete-node)
               (define-key evil-normal-state-local-map (kbd "s") 'neotree-enter-vertical-split)
               (define-key evil-normal-state-local-map (kbd "S") 'neotree-enter-horizontal-split)
-              (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter))))
+              (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
+  (setq neo-window-fixed-size nil)
+  (defun neotree-project-dir ()
+    "Open NeoTree using the git root."
+    (interactive)
+    (let ((project-dir (projectile-project-root))
+          (file-name (buffer-file-name)))
+      (neotree-toggle)
+      (if project-dir
+          (if (neo-global--window-exists-p)
+              (progn
+                (neotree-dir project-dir)
+                (neotree-find file-name)))
+        (message "Could not find git project root."))))
+  )
 
 ;; run emacs as a deamon
 ; (require 'server)
 ; (if (not (server-running-p)) (server-start))
+
+;; ========== language specific ==========
+
+;; markdown
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "/usr/local/bin/multimarkdown"))
+
 
 ;; ========== keybindings ==========
 
