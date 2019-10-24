@@ -38,22 +38,22 @@
 (eval-when-compile
   (require 'use-package))
 
+;; Enable defer and ensure by default for use-package
+(setq use-package-always-ensure t)
+
 ;; ========== choose to be evil ==========
 
 ;; enable evil-leader before evil, so it is avilable in every evil buffer
 (use-package evil-leader
-  :ensure t
   :config
   (evil-leader/set-leader "SPC")
   (global-evil-leader-mode))
 
 (use-package evil
-  :ensure t
   :config
   (evil-mode t))
 
 (use-package evil-nerd-commenter
-  :ensure t
   :config
   (evil-leader/set-key
     "c SPC" 'evilnc-comment-or-uncomment-lines
@@ -62,7 +62,6 @@
   )
 
 (use-package evil-multiedit
-  :ensure t
   :config
   (evil-multiedit-default-keybinds)
   )
@@ -71,7 +70,6 @@
 
 ;; the doom pack has many nice themes
 (use-package doom-themes
-  :ensure t
   :config
   (setq doom-themes-enable-bold t
     doom-themes-enable-italic t)
@@ -114,20 +112,16 @@
 
 ;; nicer modeline
 (use-package doom-modeline
-  :ensure t
   :hook (after-init . doom-modeline-mode))
 
 ;; draw a nice vertical line instead of pagebreak char
-(use-package page-break-lines
-  :ensure t)
+(use-package page-break-lines)
 
 ;; add icons
-(use-package all-the-icons
-  :ensure t)
+(use-package all-the-icons)
 
 ;; nicer splash screen
 (use-package dashboard
-  :ensure t
   :config
   (setq dashboard-banner-logo-title "EVIL mode is the only mode!")
   (setq dashboard-startup-banner 'logo)
@@ -137,7 +131,6 @@
 
 ;; contrast non-editor buffers
 (use-package solaire-mode
-  :ensure t
   :hook
   ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
   (minibuffer-setup . solaire-mode-in-minibuffer)
@@ -147,7 +140,6 @@
 
 ;; draw indent guides #need for yaml...
 (use-package highlight-indent-guides
-  :ensure t
   :config
   (setq highlight-indent-guides-method 'character)
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
@@ -199,8 +191,6 @@
 
 ;; better dealing with delimiter pairs
 (use-package smartparens
-  :ensure t
-  :diminish smartparens-mode
   :config
   (progn
     (require 'smartparens-config)
@@ -209,32 +199,24 @@
 
 ;; suggest keys when making chords
 (use-package which-key
-  :ensure t
-  :diminish which-key-mode
   :config
   (which-key-mode +1))
 
 ;; autocompletion suggestions
 (use-package company
-  :ensure t
-  :diminish company-mode
   :config
   (add-hook 'after-init-hook #'global-company-mode))
 
 ;; linting / static code checking
 (use-package flycheck
-  :ensure t
-  :diminish flycheck-mode
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
 ;; jump to definition using the_silver_searcher + ripgrep to try to find declaration
-(use-package dumb-jump
-  :ensure t)
+(use-package dumb-jump)
 
 ;; git integration
 (use-package magit
-  :ensure t
   :config
   (evil-leader/set-key
     "g s" 'magit-status
@@ -243,19 +225,16 @@
 
 ;; show git changes in the fringe
 (use-package diff-hl
-  :ensure t
   :config
   (add-hook 'prog-mode-hook 'diff-hl-mode))
 
 ;; rainbows!
 (use-package rainbow-delimiters
-  :ensure t
   :config
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 ;; fuzzy completion framework
 (use-package helm
-  :ensure t
   :defer 2
   :bind
   ("M-x" . helm-M-x)
@@ -277,13 +256,11 @@
 
 ;; combine projectile and helm
 (use-package helm-projectile
-  :ensure t
   :config
   (helm-projectile-on))
 
 ;; project management, seems useful, not quite sure what it does yet...
 (use-package projectile
-  :ensure t
   :config
   (evil-leader/set-key
     "p p" 'helm-projectile-switch-project
@@ -294,7 +271,6 @@
 
 ;; side panel file browser
 (use-package neotree
-  :ensure t
   :config
   (setq-default neo-show-hidden-files t)
   (global-set-key [f8] 'neotree-toggle)
@@ -336,9 +312,37 @@
 
 ;; ========== language specific ==========
 
+;; >>> scala <<<
+(use-package scala-mode
+  :mode "\\.s\\(cala\\|bt\\)$")
+
+;; scala build tool integration
+(use-package sbt-mode
+  :commands sbt-start sbt-command
+  :config
+  ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
+  ;; allows using SPACE when in the minibuffer
+  (substitute-key-definition
+   'minibuffer-complete-word
+   'self-insert-command
+   minibuffer-local-completion-map))
+
+;; language server protocol integration, provides IDE-like features
+(use-package lsp-mode
+  ;; Optional - enable lsp-mode automatically in scala files
+  :hook (scala-mode . lsp)
+  :config (setq lsp-prefer-flymake nil))
+
+;; ui for lsp
+(use-package lsp-ui)
+
+;; Add company-lsp backend for metals
+(use-package company-lsp)
+
+;; >>> end scala <<<
+
 ;; markdown
 (use-package markdown-mode
-  :ensure t
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
