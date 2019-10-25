@@ -210,7 +210,9 @@
 ;; linting / static code checking
 (use-package flycheck
   :config
-  (add-hook 'after-init-hook #'global-flycheck-mode))
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+  (add-hook 'sh-mode-hook 'flycheck-mode)
+  )
 
 ;; jump to definition using the_silver_searcher + ripgrep to try to find declaration
 (use-package dumb-jump)
@@ -320,6 +322,14 @@
             '(lambda ()
                (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
   )
+
+;; use yamllint with flycheck
+(use-package flycheck-yamllint
+  :defer t
+  :init
+  (progn
+    (eval-after-load 'flycheck
+      '(add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup))))
 
 ;; dockerfile
 (use-package dockerfile-mode
