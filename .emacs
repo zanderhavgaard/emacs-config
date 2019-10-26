@@ -327,6 +327,13 @@
         (message "Could not find git project root."))))
   )
 
+;; center buffer when only one displayed
+(use-package perfect-margin
+  :config
+  ;; (perfect-margin-mode 1) ;; enable by default
+  (evil-leader/set-key
+    "f" 'perfect-margin-mode)
+  )
 
 ;; language server protocol integration, provides IDE-like features
 (use-package lsp-mode
