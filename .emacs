@@ -214,6 +214,25 @@
   (add-hook 'sh-mode-hook 'flycheck-mode)
   )
 
+;; show flycheck messages inline using minibuffer -> works in cli mode
+(use-package flycheck-popup-tip
+  :config
+  (with-eval-after-load 'flycheck (flycheck-popup-tip-mode))
+  )
+
+;; show flymake messages inline using gui
+;; (use-package flycheck-pos-tip
+;;   :config
+;;   (with-eval-after-load 'flycheck
+;;     (flycheck-pos-tip-mode))
+;;   )
+
+;; use either mode depending on whether in gui or cli mode
+;; (eval-after-load 'flycheck
+;;   (if (display-graphic-p)
+;;       (flycheck-pos-tip-mode)
+;;     (flycheck-popup-tip-mode)))
+
 ;; jump to definition using the_silver_searcher + ripgrep to try to find declaration
 (use-package dumb-jump)
 
@@ -308,9 +327,18 @@
         (message "Could not find git project root."))))
   )
 
-;; run emacs as a deamon
-; (require 'server)
-; (if (not (server-running-p)) (server-start))
+
+;; language server protocol integration, provides IDE-like features
+(use-package lsp-mode
+  ;; Optional - enable lsp-mode automatically in scala files
+  :hook (scala-mode . lsp)
+  :config (setq lsp-prefer-flymake nil))
+
+;; ui for lsp
+(use-package lsp-ui)
+
+;; use comapny mode to display lsp messages
+(use-package company-lsp)
 
 ;; ========== language specific ==========
 
@@ -346,7 +374,7 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "/usr/local/bin/multimarkdown"))
 
-;; >>> scala <<<
+;; scala
 (use-package scala-mode
   :mode "\\.s\\(cala\\|bt\\)$")
 
@@ -361,19 +389,11 @@
    'self-insert-command
    minibuffer-local-completion-map))
 
-;; language server protocol integration, provides IDE-like features
-(use-package lsp-mode
-  ;; Optional - enable lsp-mode automatically in scala files
-  :hook (scala-mode . lsp)
-  :config (setq lsp-prefer-flymake nil))
-
-;; ui for lsp
-(use-package lsp-ui)
-
-;; Add company-lsp backend for metals
-(use-package company-lsp)
-
-;; >>> end scala <<<
+;; lsp integration for java using eclipse JDT language server
+(use-package lsp-java
+  :config
+  (add-hook 'java-mode-hook #'lsp)
+  )
 
 
 ;; ========== fix dead keys ==========
@@ -409,6 +429,13 @@
 (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
 (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
 (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+
+
+;; ========== deamonize =========
+
+;; run emacs as a deamon
+; (require 'server)
+; (if (not (server-running-p)) (server-start))
 
 
 ;; ============================================================
