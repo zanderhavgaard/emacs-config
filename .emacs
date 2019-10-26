@@ -127,7 +127,15 @@
   (setq dashboard-startup-banner 'logo)
   (setq dashboard-set-file-icons t)
   (setq dashboard-set-heading-icons t)
-  (dashboard-setup-startup-hook))
+  (setq dashboard-center-content t)
+  (setq dashboard-show-shortcuts nil)
+  (setq dashboard-set-init-info nil)
+  (setq dashboard-items '((projects . 20)
+                          (recents . 20)
+                          ;; (agenda . 10)
+                          ))
+  (dashboard-setup-startup-hook)
+  )
 
 ;; contrast non-editor buffers
 (use-package solaire-mode
