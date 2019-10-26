@@ -360,6 +360,9 @@
     "g" 'minimap-mode)
   )
 
+;; code snippets
+(use-package yasnippet)
+
 ;; language server protocol integration, provides IDE-like features
 (use-package lsp-mode
   ;; Optional - enable lsp-mode automatically in scala files
@@ -472,3 +475,17 @@
 
 ;; ============================================================
 ;; here be auto generated dragons...
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (yasnippet yaml-mode which-key use-package sublimity solaire-mode smartparens scala-mode sbt-mode rainbow-delimiters perfect-margin neotree minimap magit lsp-ui lsp-java highlight-indent-guides helm-projectile flymake-diagnostic-at-point flycheck-yamllint flycheck-pos-tip flycheck-popup-tip evil-nerd-commenter evil-multiedit evil-leader dumb-jump doom-themes doom-modeline dockerfile-mode diff-hl dashboard company-lsp))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
