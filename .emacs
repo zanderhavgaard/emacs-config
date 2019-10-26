@@ -327,12 +327,29 @@
         (message "Could not find git project root."))))
   )
 
-;; center buffer when only one displayed
+;; smoother scrolling
+(use-package sublimity
+  :config
+  (require 'sublimity)
+  (require 'sublimity-scroll)
+  (sublimity-mode 1)
+  (setq sublimity-scroll-weight 10
+        sublimity-scroll-drift-length 5)
+  )
+
+;; center buffer when only one buffer is displayed
 (use-package perfect-margin
   :config
   ;; (perfect-margin-mode 1) ;; enable by default
   (evil-leader/set-key
     "f" 'perfect-margin-mode)
+  )
+
+;; display a minimap
+(use-package minimap
+  :config
+  (evil-leader/set-key
+    "g" 'minimap-mode)
   )
 
 ;; language server protocol integration, provides IDE-like features
@@ -447,19 +464,14 @@
 
 ;; ============================================================
 ;; here be auto generated dragons...
-
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("f951343d4bbe5a90dba0f058de8317ca58a6822faa65d8463b0e751a07ec887c" "1728dfd9560bff76a7dc6c3f61e9f4d3e6ef9d017a83a841c117bd9bebe18613" "2d1fe7c9007a5b76cea4395b0fc664d0c1cfd34bb4f1860300347cdad67fb2f9" "f2b83b9388b1a57f6286153130ee704243870d40ae9ec931d0a1798a5a916e76" "0d087b2853473609d9efd2e9fbeac088e89f36718c4a4c89c568dd1b628eae41" "071f5702a5445970105be9456a48423a87b8b9cfa4b1f76d15699b29123fb7d8" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "bc75dfb513af404a26260b3420d1f3e4131df752c19ab2984a7c85def9a2917e" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
  '(package-selected-packages
    (quote
-    (dockerfile-mode doom-modeline smart-mode-line-atom-one-dark-theme smart-mode-line-atome-one-dark-theme use-package smart-mode-line doom-themes))))
+    (sublimity-scroll yaml-mode which-key use-package sublimity solaire-mode smartparens scala-mode sbt-mode rainbow-delimiters perfect-margin neotree minimap magit lsp-ui lsp-java highlight-indent-guides helm-projectile flymake-diagnostic-at-point flycheck-yamllint flycheck-pos-tip flycheck-popup-tip evil-nerd-commenter evil-multiedit evil-leader dumb-jump doom-themes doom-modeline dockerfile-mode diff-hl dashboard company-lsp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
