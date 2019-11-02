@@ -436,6 +436,14 @@
 ;; lsp integration for java using eclipse JDT language server
 (use-package lsp-java
   :config
+  (setq projectile-project-search-path '(
+                                         "/home/zander/dotfiles"
+                                         "/home/zander/emacs-config"
+                                         "/home/zander/Dropbox/github/"
+                                         "/home/zander/Dropbox/ITU/Master/3_semester/advanced_programming/Advanced_programming"
+                                         "/home/zander/Dropbox/ITU/Master/3_semester/parallel_concurrent_programming/PCPP"
+                                         "/home/zander/Dropbox/ITU/Master/3_semester/applied_algorithms/apalg"
+                                         ))
   (add-hook 'java-mode-hook #'lsp)
   )
 
