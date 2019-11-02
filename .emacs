@@ -267,6 +267,14 @@
   :config
   (add-hook 'prog-mode-hook 'diff-hl-mode))
 
+;; show color codes as background
+(use-package rainbow-mode
+  :config
+  (evil-leader/set-key
+    "h" 'rainbow-mode
+    )
+  )
+
 ;; rainbows!
 (use-package rainbow-delimiters
   :config
