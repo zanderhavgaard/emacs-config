@@ -150,7 +150,8 @@
 (use-package highlight-indent-guides
   :config
   (setq highlight-indent-guides-method 'character)
-  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+  (add-hook 'yaml-mode 'highlight-indent-guides-mode)) ;; TODO fix
 
 ;; =========== font stuff ==========
 
