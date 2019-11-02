@@ -395,6 +395,12 @@
 
 ;; ========== language specific ==========
 
+;; python
+(use-package elpy
+  :init
+  (elpy-enable)
+  )
+
 ;; yaml
 (use-package yaml-mode
   :config
