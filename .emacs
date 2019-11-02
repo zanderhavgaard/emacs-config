@@ -78,6 +78,10 @@
   (doom-themes-neotree-config)
   ;; (doom-themes-treemacs-config)
   (doom-themes-org-config)
+(set-face-attribute 'font-lock-comment-face nil :slant 'italic)
+(set-face-attribute 'font-lock-function-name-face nil :slant 'italic)
+(set-face-attribute 'font-lock-variable-name-face nil :slant 'italic)
+
   )
 
 
@@ -156,7 +160,10 @@
 ;; =========== font stuff ==========
 
 ;; set font
-(set-frame-font "Hasklug Nerd Font 11" nil t)
+;; (set-frame-font "Hasklug Nerd Font 11" nil t)
+;; (set-frame-font "SpaceMono Nerd Font 13" nil t)
+(set-frame-font "FantasqueSansMono Nerd Font 13" nil t)
+;; (set-frame-font "VictorMono Nerd Font 14" nil t)
 
 ;; use utf-8
 (prefer-coding-system 'utf-8)
