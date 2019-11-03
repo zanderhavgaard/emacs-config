@@ -1,9 +1,9 @@
 #!/bin/bash
 
-rm ~/.emacs
-rm -r ~/.emacs.d
+rm /home/zander/.emacs
+rm -r /home/zander/.emacs.d
 
 sudo pacman -Rns emacs
 sudo pacman -S emacs
 
-bash ~/emacs-config/setup.sh
+bash /home/zander/emacs-config/setup.sh
