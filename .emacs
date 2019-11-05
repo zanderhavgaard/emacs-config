@@ -316,15 +316,22 @@
 ;; project management, seems useful, not quite sure what it does yet...
 (use-package projectile
   :config
-  (setq projectile-project-search-path '(
-                                         "/home/zander/dotfiles"
-                                         "/home/zander/emacs-config"
-                                         "/home/zander/Dropbox/github/"
-                                         "/home/zander/Dropbox/ITU/Master/3_semester/advanced_programming/Advanced_programming"
-                                         "/home/zander/Dropbox/ITU/Master/3_semester/parallel_concurrent_programming/PCPP"
-                                         "/home/zander/Dropbox/ITU/Master/3_semester/applied_algorithms/apalg"
-                                         "/home/zander/Dropbox/ITU/Master/3_semester/rp"
-                                         ))
+  (if (file-exists-p "/home/zander/praqma")
+      (setq projectile-project-search-path '(
+                                             "/home/zander"
+                                             "/home/zander/praqma/novo_resume"
+                                             ))
+    )
+   (if (file-exists-p "/home/zander/dropbox")
+      (setq projectile-project-search-path '(
+                                             "/home/zander"
+                                             "/home/zander/Dropbox/github/"
+                                             "/home/zander/Dropbox/ITU/Master/3_semester/advanced_programming/Advanced_programming"
+                                             "/home/zander/Dropbox/ITU/Master/3_semester/parallel_concurrent_programming/PCPP"
+                                             "/home/zander/Dropbox/ITU/Master/3_semester/applied_algorithms"
+                                             "/home/zander/Dropbox/ITU/Master/3_semester/rp"
+                                             ))
+     )
   (evil-leader/set-key
     "p p" 'helm-projectile-switch-project
     "p f" 'helm-projectile-find-file
