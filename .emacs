@@ -274,6 +274,17 @@
   :config
   (add-hook 'prog-mode-hook 'diff-hl-mode))
 
+(use-package hl-todo
+  :config
+  (global-hl-todo-mode)
+  (evil-leader/set-key
+    "t p" 'hl-todo-previous
+    "t n" 'hl-todo-next
+    "t o" 'hl-todo-occur
+    "t i" 'hl-todo-insert
+    )
+  )
+
 ;; show color codes as background
 (use-package rainbow-mode
   :config
