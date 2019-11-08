@@ -116,7 +116,18 @@
 
 ;; nicer modeline
 (use-package doom-modeline
-  :hook (after-init . doom-modeline-mode))
+  :hook (after-init . doom-modeline-mode)
+  :config
+  (setq doom-modeline-buffer-file-name-style 'truncate-upto-project) ;; should improve performance
+  (setq doom-modeline-icon (display-graphic-p))
+  )
+
+;; spacemacs modeline
+;; (use-package spaceline
+;;   :config
+;;   (require 'spaceline-config)
+;;   (spaceline-spacemacs-theme)
+;;   )
 
 ;; draw a nice vertical line instead of pagebreak char
 (use-package page-break-lines)
@@ -335,7 +346,7 @@
                                              ))
     )
   ;; projects on Vostok & Nostromo
-   (if (file-exists-p "/home/zander/dropbox")
+   (if (file-exists-p "/home/zander/Dropbox")
       (setq projectile-project-search-path '(
                                              "/home/zander"
                                              "/home/zander/Dropbox/github/"
