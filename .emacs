@@ -155,7 +155,7 @@
   :config
   (setq highlight-indent-guides-method 'character)
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-  (add-hook 'yaml-mode 'highlight-indent-guides-mode)) ;; TODO fix
+  (add-hook 'yaml-mode-hook 'highlight-indent-guides-mode))
 
 ;; =========== font stuff ==========
 
@@ -283,6 +283,7 @@
     "t o" 'hl-todo-occur
     "t i" 'hl-todo-insert
     )
+  (add-hook 'org-mode-hook 'hl-todo-mode)
   )
 
 ;; show color codes as background
