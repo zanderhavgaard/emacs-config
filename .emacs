@@ -74,6 +74,7 @@
   (setq doom-themes-enable-bold t
     doom-themes-enable-italic t)
   (load-theme 'doom-dracula t)
+  ;; (load-theme 'doom-one t)
   (doom-themes-visual-bell-config)
   (doom-themes-neotree-config)
   ;; (doom-themes-treemacs-config)
@@ -114,12 +115,14 @@
        (abbreviate-file-name (buffer-file-name))
        "%b"))))
 
-;; nicer modeline
+;; doom modeline
 (use-package doom-modeline
   :hook (after-init . doom-modeline-mode)
   :config
   (setq doom-modeline-buffer-file-name-style 'truncate-upto-project) ;; should improve performance
+  (setq doom-modeline-project-detection 'projectile)
   (setq doom-modeline-icon (display-graphic-p))
+  (setq doom-modeline-evil-state-icon t)
   )
 
 ;; spacemacs modeline
@@ -127,6 +130,15 @@
 ;;   :config
 ;;   (require 'spaceline-config)
 ;;   (spaceline-spacemacs-theme)
+;;   )
+
+;; ;; icons for spaceline
+;; (use-package spaceline-all-the-icons
+;;   :after spaceline
+;;   :config
+;;   (spaceline-all-the-icons-theme)
+;;   (setq spaceline-all-the-icons-separator-type 'slant)
+;;   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
 ;;   )
 
 ;; draw a nice vertical line instead of pagebreak char
@@ -183,6 +195,16 @@
 (set-keyboard-coding-system 'utf-8)
 
 ;; ========== misc ==========
+
+;; import env vars from the shell
+(use-package exec-path-from-shell
+  :init
+  (exec-path-from-shell-copy-env "WORKON_HOME")
+  (exec-path-from-shell-copy-env "PYTHONPATH")
+  (exec-path-from-shell-copy-env "CLASSPATH")
+  (exec-path-from-shell-initialize)
+  )
+  ;; TODO fix imports warning message
 
 ;; tell emacs who I am, useful for git integration and stuff
 (setq user-full-name "Zander Havgaad"
@@ -331,12 +353,7 @@
   (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
   )
 
-;; combine projectile and helm
-(use-package helm-projectile
-  :config
-  (helm-projectile-on))
-
-;; project management, seems useful, not quite sure what it does yet...
+;; project management
 (use-package projectile
   :config
   ;; projects on Soyuz
@@ -363,6 +380,11 @@
     "p s" 'helm-projectile-save-buffers
     )
   (projectile-mode +1))
+
+;; combine projectile and helm
+(use-package helm-projectile
+  :config
+  (helm-projectile-on))
 
 ;; side panel file browser
 (use-package neotree
@@ -447,7 +469,12 @@
 (use-package elpy
   :init
   (elpy-enable)
-  )
+  ;; (add-hook 'elpy-mode-hook (lambda () (highlight-indentation-mode -1)))
+  :config
+  (delete 'elpy-module-highlight-indentation elpy-modules)
+  (delete 'elpy-module-flymake elpy-modules)
+  (setq elpy-rpc-backend "jedi")
+)
 
 ;; yaml
 (use-package yaml-mode
