@@ -49,10 +49,25 @@
   (evil-leader/set-leader "SPC")
   (global-evil-leader-mode))
 
+;; be evil
 (use-package evil
   :config
-  (evil-mode t))
+  (evil-mode 1))
 
+;; required to be loaded before evil-collection
+;; TODO can they be moved to :config section of evil?
+;; https://github.com/emacs-evil/evil-collection
+(setq evil-want-integration t)
+(setq evil-want-keybinding nil)
+
+;; evil keybindings for modes evil does not cover
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init)
+  )
+
+;; smart toggle line comments
 (use-package evil-nerd-commenter
   :config
   (evil-leader/set-key
@@ -61,6 +76,7 @@
     )
   )
 
+;; multiline cursors with regex
 (use-package evil-multiedit
   :config
   (evil-multiedit-default-keybinds)
@@ -302,11 +318,24 @@
     )
   )
 
+;; evil keybindings for magit
+(use-package evil-magit)
+
 ;; show git changes in the fringe
 (use-package diff-hl
   :config
   (add-hook 'prog-mode-hook 'diff-hl-mode))
 
+;; show todos in magit status
+(use-package magit-todos
+  :config
+  (magit-todos-mode)
+  (evil-leader/set-key
+    "t l" 'magit-todos-list
+    )
+  )
+
+;; highlight todos and quickly jump between todos in file
 (use-package hl-todo
   :config
   (global-hl-todo-mode)
