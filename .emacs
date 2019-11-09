@@ -43,6 +43,12 @@
 
 ;; ========== choose to be evil ==========
 
+;; required to be loaded before evil-collection
+;; TODO can they be moved to :config section of evil?
+;; https://github.com/emacs-evil/evil-collection
+(setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+(setq evil-want-keybinding nil)
+
 ;; enable evil-leader before evil, so it is avilable in every evil buffer
 (use-package evil-leader
   :config
@@ -51,21 +57,22 @@
 
 ;; be evil
 (use-package evil
+  :after evil-collection
   :config
   (evil-mode 1))
-
-;; required to be loaded before evil-collection
-;; TODO can they be moved to :config section of evil?
-;; https://github.com/emacs-evil/evil-collection
-(setq evil-want-integration t)
-(setq evil-want-keybinding nil)
 
 ;; evil keybindings for modes evil does not cover
 (use-package evil-collection
   :after evil
+  :init
+(setq evil-want-integration t)
+(setq evil-want-keybinding nil)
   :config
   (evil-collection-init)
   )
+
+;; evil keybindings for magit
+(use-package evil-magit)
 
 ;; smart toggle line comments
 (use-package evil-nerd-commenter
@@ -317,9 +324,6 @@
     "g s" 'magit-status
     )
   )
-
-;; evil keybindings for magit
-(use-package evil-magit)
 
 ;; show git changes in the fringe
 (use-package diff-hl
