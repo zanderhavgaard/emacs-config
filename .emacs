@@ -157,7 +157,7 @@
   (setq dashboard-center-content t)
   (setq dashboard-show-shortcuts nil)
   (setq dashboard-set-init-info nil)
-  (setq dashboard-items '((projects . 20)
+  (setq dashboard-items '((projects . 1000)
                           (recents . 20)
                           ;; (agenda . 10)
                           ))
@@ -474,6 +474,9 @@
   (delete 'elpy-module-highlight-indentation elpy-modules)
   (delete 'elpy-module-flymake elpy-modules)
   (setq elpy-rpc-backend "jedi")
+  (evil-leader/set-key
+    "y w" 'pyvenv-workon
+    )
 )
 
 ;; yaml
