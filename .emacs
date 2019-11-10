@@ -96,15 +96,14 @@
   :config
   (setq doom-themes-enable-bold t
     doom-themes-enable-italic t)
-  (load-theme 'doom-dracula t)
+  (load-theme 'doom-one t)
   (doom-themes-visual-bell-config)
   (doom-themes-neotree-config)
   ;; (doom-themes-treemacs-config)
   (doom-themes-org-config)
-(set-face-attribute 'font-lock-comment-face nil :slant 'italic)
-(set-face-attribute 'font-lock-function-name-face nil :slant 'italic)
-(set-face-attribute 'font-lock-variable-name-face nil :slant 'italic)
-
+  (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
+  (set-face-attribute 'font-lock-function-name-face nil :slant 'italic)
+  (set-face-attribute 'font-lock-variable-name-face nil :slant 'italic)
   )
 
 
