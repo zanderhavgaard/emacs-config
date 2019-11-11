@@ -504,7 +504,6 @@
   ;; (add-hook 'elpy-mode-hook (lambda () (highlight-indentation-mode -1)))
   :config
   (delete 'elpy-module-highlight-indentation elpy-modules)
-  (delete 'elpy-module-flymake elpy-modules)
   (setq elpy-rpc-backend "jedi")
   (evil-leader/set-key
     "y w" 'pyvenv-workon
