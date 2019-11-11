@@ -161,7 +161,8 @@
 (use-package doom-modeline
   :hook (after-init . doom-modeline-mode)
   :config
-  (setq doom-modeline-buffer-file-name-style 'truncate-upto-project) ;; should improve performance
+  ;; (setq doom-modeline-buffer-file-name-style 'truncate-upto-project)
+  (setq doom-modeline-buffer-file-name-style 'relative-to-project)
   (setq doom-modeline-project-detection 'projectile)
   (setq doom-modeline-icon (display-graphic-p))
   (setq doom-modeline-evil-state-icon t)
