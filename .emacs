@@ -91,21 +91,32 @@
 
 ;; =========== theme ==========
 
-;; the doom pack has many nice themes
-(use-package doom-themes
+;; add some italics
+;; (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
+;; (set-face-attribute 'font-lock-function-name-face nil :slant 'italic)
+;; (set-face-attribute 'font-lock-variable-name-face nil :slant 'italic)
+
+;; collection of base16 themes
+(use-package base16-theme
   :config
-  (setq doom-themes-enable-bold t
-    doom-themes-enable-italic t)
-  (load-theme 'doom-one t)
-  (doom-themes-visual-bell-config)
-  (doom-themes-neotree-config)
-  ;; (doom-themes-treemacs-config)
-  (doom-themes-org-config)
+  ;; (load-theme 'base16-default-dark t)
+  (load-theme 'base16-chalk t)
   (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
   (set-face-attribute 'font-lock-function-name-face nil :slant 'italic)
   (set-face-attribute 'font-lock-variable-name-face nil :slant 'italic)
   )
 
+;; the doom pack has many nice themes
+(use-package doom-themes
+  :config
+  (setq doom-themes-enable-bold t
+    doom-themes-enable-italic t)
+  ;; (load-theme 'doom-one t)
+  (doom-themes-visual-bell-config)
+  (doom-themes-neotree-config)
+  ;; (doom-themes-treemacs-config)
+  (doom-themes-org-config)
+  )
 
 ;; =========== ui stuff ==========
 
@@ -593,20 +604,5 @@
 
 ;; ============================================================
 ;; here be auto generated dragons...
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("7ffb0d3d0c797b980ed7330adc04a66516d49a61e4187a7054dda014676421d9" "7f74a3b9a1f5e3d31358b48b8f8a1154aab2534fae82c9e918fb389fca776788" "423435c7b0e6c0942f16519fa9e17793da940184a50201a4d932eafe4c94c92d" "0fe9f7a04e7a00ad99ecacc875c8ccb4153204e29d3e57e9669691e6ed8340ce" "d6f04b6c269500d8a38f3fabadc1caa3c8fdf46e7e63ee15605af75a09d5441e" "5e0b63e0373472b2e1cf1ebcc27058a683166ab544ef701a6e7f2a9f33a23726" "428754d8f3ed6449c1078ed5b4335f4949dc2ad54ed9de43c56ea9b803375c23" "0d087b2853473609d9efd2e9fbeac088e89f36718c4a4c89c568dd1b628eae41" "cdb3e7a8864cede434b168c9a060bf853eeb5b3f9f758310d2a2e23be41a24ae" "2878517f049b28342d7a360fd3f4b227086c4be8f8409f32e0f234d129cee925" "001c2ff8afde9c3e707a2eb3e810a0a36fb2b466e96377ac95968e7f8930a7c5" "332e009a832c4d18d92b3a9440671873187ca5b73c2a42fbd4fc67ecf0379b8c" "70cc30fd9d27a8d0d3ae82974ac2c409fd2cd5746470e2246778c6bec2d4857c" "70ed3a0f434c63206a23012d9cdfbe6c6d4bb4685ad64154f37f3c15c10f3b90" "2a3ffb7775b2fe3643b179f2046493891b0d1153e57ec74bbe69580b951699ca" "f951343d4bbe5a90dba0f058de8317ca58a6822faa65d8463b0e751a07ec887c" "b462d00de785490a0b6861807a360f5c1e05b48a159a99786145de7e3cce3afe" "f2b83b9388b1a57f6286153130ee704243870d40ae9ec931d0a1798a5a916e76" "1728dfd9560bff76a7dc6c3f61e9f4d3e6ef9d017a83a841c117bd9bebe18613" "f589e634c9ff738341823a5a58fc200341b440611aaa8e0189df85b44533692b" "f30aded97e67a487d30f38a1ac48eddb49fdb06ac01ebeaff39439997cbdd869" "a2286409934b11f2f3b7d89b1eaebb965fd63bc1e0be1c159c02e396afb893c8" "071f5702a5445970105be9456a48423a87b8b9cfa4b1f76d15699b29123fb7d8" "2d1fe7c9007a5b76cea4395b0fc664d0c1cfd34bb4f1860300347cdad67fb2f9" default)))
- '(package-selected-packages
-   (quote
-    (yasnippet yaml-mode which-key use-package sublimity solaire-mode smartparens scala-mode sbt-mode rainbow-delimiters perfect-margin neotree minimap magit lsp-ui lsp-java highlight-indent-guides helm-projectile flymake-diagnostic-at-point flycheck-yamllint flycheck-pos-tip flycheck-popup-tip evil-nerd-commenter evil-multiedit evil-leader dumb-jump doom-themes doom-modeline dockerfile-mode diff-hl dashboard company-lsp))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+
