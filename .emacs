@@ -97,14 +97,14 @@
 
 ;; =========== theme ==========
 
-;; nice dark colorful theme
-(use-package challenger-deep-theme
-  :config
-  (load-theme 'challenger-deep t)
-  (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
-  (set-face-attribute 'font-lock-function-name-face nil :slant 'italic)
-  (set-face-attribute 'font-lock-variable-name-face nil :slant 'italic)
-  )
+;; ;; nice dark colorful theme
+;; (use-package challenger-deep-theme
+;;   :config
+;;   (load-theme 'challenger-deep t)
+;;   (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
+;;   (set-face-attribute 'font-lock-function-name-face nil :slant 'italic)
+;;   (set-face-attribute 'font-lock-variable-name-face nil :slant 'italic)
+;;   )
 
 ;; ;; collection of base16 themes
 ;; (use-package base16-theme
@@ -121,7 +121,7 @@
   :config
   (setq doom-themes-enable-bold t
     doom-themes-enable-italic t)
-  ;; (load-theme 'doom-one t)
+  (load-theme 'doom-one t)
   (doom-themes-visual-bell-config)
   (doom-themes-neotree-config)
   ;; (doom-themes-treemacs-config)
@@ -579,11 +579,11 @@
    'self-insert-command
    minibuffer-local-completion-map))
 
-;; lsp integration for java using eclipse JDT language server
-(use-package lsp-java
-  :config
-  (add-hook 'java-mode-hook #'lsp)
-  )
+;; ;; lsp integration for java using eclipse JDT language server
+;; (use-package lsp-java
+;;   :config
+;;   (add-hook 'java-mode-hook #'lsp)
+;;   )
 
 
 ;; ========== fix dead keys ==========
@@ -620,6 +620,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("a2286409934b11f2f3b7d89b1eaebb965fd63bc1e0be1c159c02e396afb893c8" "05a5f54fc813d0b23a47624ada88a5d7bb23bb79e55231868e82eed151cf6ffc" default)))
  '(package-selected-packages
    (quote
     (challenger-deep-theme yaml-mode which-key vterm use-package sublimity solaire-mode smartparens scala-mode sbt-mode rainbow-mode rainbow-delimiters perfect-margin neotree minimap magit-todos lsp-ui lsp-java highlight-indent-guides helm-projectile flycheck-yamllint flycheck-popup-tip exec-path-from-shell evil-nerd-commenter evil-multiedit evil-magit evil-leader evil-collection elpy dumb-jump doom-themes doom-modeline dockerfile-mode diff-hl dashboard company-lsp base16-theme))))
@@ -628,4 +631,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((((class color) (min-colors 257)) (:background "#1b182c" :foreground "#cbe3e7")) (((class color) (min-colors 89)) (:background "#1c1c1c" :foreground "#eeeeee")))))
+ )
