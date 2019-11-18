@@ -127,7 +127,7 @@
   ;; (doom-themes-treemacs-config)
   (doom-themes-org-config)
   ;; add some italics
-  (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
+  ;; (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
   (set-face-attribute 'font-lock-function-name-face nil :slant 'italic)
   (set-face-attribute 'font-lock-variable-name-face nil :slant 'italic)
   )
