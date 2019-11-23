@@ -428,7 +428,7 @@
                                              "/home/zander/Dropbox/github/"
                                              "/home/zander/Dropbox/ITU/Master/3_semester/advanced_programming/Advanced_programming"
                                              "/home/zander/Dropbox/ITU/Master/3_semester/parallel_concurrent_programming/PCPP"
-                                             "/home/zander/Dropbox/ITU/Master/3_semester/applied_algorithms"
+                                             "/home/zander/Dropbox/ITU/Master/3_semester/applied_algorithms/apalg"
                                              "/home/zander/Dropbox/ITU/Master/3_semester/rp"
                                              ))
      )
