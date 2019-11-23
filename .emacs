@@ -30,7 +30,7 @@
 (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
+; (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
 
 ;; initialize packages
 (package-initialize)
@@ -591,12 +591,6 @@
    'minibuffer-complete-word
    'self-insert-command
    minibuffer-local-completion-map))
-
-;; ;; lsp integration for java using eclipse JDT language server
-;; (use-package lsp-java
-;;   :config
-;;   (add-hook 'java-mode-hook #'lsp)
-;;   )
 
 
 ;; ========== fix dead keys ==========
