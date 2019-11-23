@@ -622,20 +622,3 @@
 
 ;; ============================================================
 ;; here be auto generated dragons...
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("a2286409934b11f2f3b7d89b1eaebb965fd63bc1e0be1c159c02e396afb893c8" "05a5f54fc813d0b23a47624ada88a5d7bb23bb79e55231868e82eed151cf6ffc" default)))
- '(package-selected-packages
-   (quote
-    (challenger-deep-theme yaml-mode which-key vterm use-package sublimity solaire-mode smartparens scala-mode sbt-mode rainbow-mode rainbow-delimiters perfect-margin neotree minimap magit-todos lsp-ui lsp-java highlight-indent-guides helm-projectile flycheck-yamllint flycheck-popup-tip exec-path-from-shell evil-nerd-commenter evil-multiedit evil-magit evil-leader evil-collection elpy dumb-jump doom-themes doom-modeline dockerfile-mode diff-hl dashboard company-lsp base16-theme))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
