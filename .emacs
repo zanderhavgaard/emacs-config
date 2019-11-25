@@ -101,7 +101,7 @@
 ;; (use-package challenger-deep-theme
 ;;   :config
 ;;   (load-theme 'challenger-deep t)
-;;   (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
+;;   ;; (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
 ;;   (set-face-attribute 'font-lock-function-name-face nil :slant 'italic)
 ;;   (set-face-attribute 'font-lock-variable-name-face nil :slant 'italic)
 ;;   )
@@ -109,9 +109,10 @@
 ;; ;; collection of base16 themes
 ;; (use-package base16-theme
 ;;   :config
-;;   ;; (load-theme 'base16-default-dark t)
-;;   (load-theme 'base16-chalk t)
-;;   (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
+;;   (load-theme 'base16-default-dark t)
+;;   ;; (load-theme 'base16-chalk t)
+;;   ;; (load-theme 'base16-3024 t)
+;;   ;; (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
 ;;   (set-face-attribute 'font-lock-function-name-face nil :slant 'italic)
 ;;   (set-face-attribute 'font-lock-variable-name-face nil :slant 'italic)
 ;;   )
@@ -121,7 +122,7 @@
   :config
   (setq doom-themes-enable-bold t
     doom-themes-enable-italic t)
-  (load-theme 'doom-one t)
+  (load-theme 'doom-oceanic-next t)
   (doom-themes-visual-bell-config)
   (doom-themes-neotree-config)
   ;; (doom-themes-treemacs-config)
@@ -172,7 +173,7 @@
   (setq doom-modeline-evil-state-icon t)
   )
 
-;; spacemacs modeline
+;; ;; spacemacs modeline
 ;; (use-package spaceline
 ;;   :config
 ;;   (require 'spaceline-config)
@@ -184,7 +185,7 @@
 ;;   :after spaceline
 ;;   :config
 ;;   (spaceline-all-the-icons-theme)
-;;   (setq spaceline-all-the-icons-separator-type 'slant)
+;;   ;; (setq spaceline-all-the-icons-separator-type 'slant)
 ;;   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
 ;;   )
 
@@ -467,18 +468,20 @@
               (define-key evil-normal-state-local-map (kbd "S") 'neotree-enter-horizontal-split)
               (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
   (setq neo-window-fixed-size nil)
-  (defun neotree-project-dir ()
-    "Open NeoTree using the git root."
-    (interactive)
-    (let ((project-dir (projectile-project-root))
-          (file-name (buffer-file-name)))
-      (neotree-toggle)
-      (if project-dir
-          (if (neo-global--window-exists-p)
-              (progn
-                (neotree-dir project-dir)
-                (neotree-find file-name)))
-        (message "Could not find git project root."))))
+
+  ;; below lines should be obsolete..
+  ;; (defun neotree-project-dir ()
+  ;;   "Open NeoTree using the git root."
+  ;;   (interactive)
+  ;;   (let ((project-dir (projectile-project-root))
+  ;;         (file-name (buffer-file-name)))
+  ;;     (neotree-toggle)
+  ;;     (if project-dir
+  ;;         (if (neo-global--window-exists-p)
+  ;;             (progn
+  ;;               (neotree-dir project-dir)
+  ;;               (neotree-find file-name)))
+  ;;       (message "Could not find git project root."))))
   )
 
 ;; scroll one line at a time (less "jumpy" than defaults)
@@ -531,6 +534,12 @@
 (use-package company-lsp)
 
 ;; ========== language specific ==========
+
+;; erlang
+(setq load-path (cons  "/usr/lib/erlang/lib/tools-3.2.1/emacs"load-path))
+(setq erlang-root-dir "/usr/lib/erlang")
+(setq exec-path (cons "/usr/lib/erlang/bin" exec-path))
+(require 'erlang-start)
 
 ;; python
 (use-package elpy
@@ -622,3 +631,20 @@
 
 ;; ============================================================
 ;; here be auto generated dragons...
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("70cc30fd9d27a8d0d3ae82974ac2c409fd2cd5746470e2246778c6bec2d4857c" "b3bcf1b12ef2a7606c7697d71b934ca0bdd495d52f901e73ce008c4c9825a3aa" default)))
+ '(package-selected-packages
+   (quote
+    (sbt-mode scala-mode dockerfile-mode flycheck-yamllint yaml-mode elpy company-lsp lsp-ui lsp-mode yasnippet minimap perfect-margin sublimity neotree helm-projectile projectile helm rainbow-delimiters rainbow-mode magit-todos diff-hl dumb-jump flycheck-popup-tip flycheck company which-key smartparens vterm exec-path-from-shell highlight-indent-guides solaire-mode dashboard page-break-lines doom-modeline doom-themes evil-multiedit evil-nerd-commenter evil-magit evil-collection evil-leader use-package))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
