@@ -535,11 +535,14 @@
 
 ;; ========== language specific ==========
 
-;; erlang
-(setq load-path (cons  "/usr/lib/erlang/lib/tools-3.2.1/emacs"load-path))
-(setq erlang-root-dir "/usr/lib/erlang")
-(setq exec-path (cons "/usr/lib/erlang/bin" exec-path))
-(require 'erlang-start)
+;; ;; erlang
+;; ;; projects on Vostok & Nostromo
+;; (if (file-exists-p "/home/zander/Dropbox")
+;;     (setq load-path (cons  "/usr/lib/erlang/lib/tools-3.2.1/emacs"load-path))
+;;   (setq erlang-root-dir "/usr/lib/erlang")
+;;   (setq exec-path (cons "/usr/lib/erlang/bin" exec-path))
+;;   (require 'erlang-start)
+;;   )
 
 ;; python
 (use-package elpy
