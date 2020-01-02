@@ -109,6 +109,14 @@
 
 ;; =========== ui stuff ==========
 
+;; gui buffer tabs
+(use-package centaur-tabs
+  :config
+  (centaur-tabs-mode t)
+  (global-set-key [C-tab] 'centaur-tabs-forward)
+  (global-set-key [C-iso-lefttab] 'centaur-tabs-backward)
+  )
+
 ;; hide unnessecary ui elements
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
@@ -146,22 +154,6 @@
   (setq doom-modeline-icon (display-graphic-p))
   (setq doom-modeline-evil-state-icon t)
   )
-
-;; ;; spacemacs modeline
-;; (use-package spaceline
-;;   :config
-;;   (require 'spaceline-config)
-;;   (spaceline-spacemacs-theme)
-;;   )
-
-;; ;; icons for spaceline
-;; (use-package spaceline-all-the-icons
-;;   :after spaceline
-;;   :config
-;;   (spaceline-all-the-icons-theme)
-;;   ;; (setq spaceline-all-the-icons-separator-type 'slant)
-;;   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
-;;   )
 
 ;; draw a nice vertical line instead of pagebreak char
 (use-package page-break-lines)
