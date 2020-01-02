@@ -256,7 +256,7 @@
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;; Actually a working terminal??
-(use-package vterm)
+;; (use-package vterm)
 
 ;; better dealing with delimiter pairs
 (use-package smartparens
