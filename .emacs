@@ -91,27 +91,7 @@
 
 ;; =========== theme ==========
 
-;; ;; nice dark colorful theme
-;; (use-package challenger-deep-theme
-;;   :config
-;;   (load-theme 'challenger-deep t)
-;;   ;; (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
-;;   (set-face-attribute 'font-lock-function-name-face nil :slant 'italic)
-;;   (set-face-attribute 'font-lock-variable-name-face nil :slant 'italic)
-;;   )
-
-;; ;; collection of base16 themes
-;; (use-package base16-theme
-;;   :config
-;;   (load-theme 'base16-default-dark t)
-;;   ;; (load-theme 'base16-chalk t)
-;;   ;; (load-theme 'base16-3024 t)
-;;   ;; (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
-;;   (set-face-attribute 'font-lock-function-name-face nil :slant 'italic)
-;;   (set-face-attribute 'font-lock-variable-name-face nil :slant 'italic)
-;;   )
-
-;; the doom pack has many nice themes
+;; doom themes
 (use-package doom-themes
   :config
   (setq doom-themes-enable-bold t
