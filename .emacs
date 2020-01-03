@@ -109,14 +109,6 @@
 
 ;; =========== ui stuff ==========
 
-;; gui buffer tabs
-(use-package centaur-tabs
-  :config
-  (centaur-tabs-mode t)
-  (global-set-key [C-tab] 'centaur-tabs-forward)
-  (global-set-key [C-iso-lefttab] 'centaur-tabs-backward)
-  )
-
 ;; hide unnessecary ui elements
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
