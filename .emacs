@@ -381,10 +381,13 @@
       (setq projectile-project-search-path '(
                                              "/home/zander"
                                              "/home/zander/Dropbox/github/"
-                                             "/home/zander/Dropbox/ITU/Master/3_semester/advanced_programming/Advanced_programming"
-                                             "/home/zander/Dropbox/ITU/Master/3_semester/parallel_concurrent_programming/PCPP"
-                                             "/home/zander/Dropbox/ITU/Master/3_semester/applied_algorithms/apalg"
+                                             "/home/zander/Dropbox/ITU/Master/3_semester/advanced_programming"
+                                             "/home/zander/Dropbox/ITU/Master/3_semester/parallel_concurrent_programming"
+                                             "/home/zander/Dropbox/ITU/Master/3_semester/applied_algorithms"
                                              "/home/zander/Dropbox/ITU/Master/3_semester/rp"
+                                             "/home/zander/Dropbox/ITU/Master/4_semester"
+                                             "/home/zander/Dropbox/ITU/Master/4_semester/thesis"
+                                             "/home/zander/Dropbox/ITU/Master/4_semester/ta_devops"
                                              ))
      )
   (evil-leader/set-key
