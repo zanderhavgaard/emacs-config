@@ -1,0 +1,14 @@
+version: 3
+
+tasks:
+  install-doom:
+    cmds:
+      - rm -rf ~/.emacs.d
+      - git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+      - ~/.config/emacs/bin/doom install
+
+  symlink-doom-config:
+    cmds:
+      - rm -rf ~/.emacs.d
+      - rm -rf ~/.config/doom
+      - ln -sv ~/emacs-config/doom ~/.config/doom
