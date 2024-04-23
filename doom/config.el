@@ -31,7 +31,7 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'atom-one-dark)
-(setq doom-theme 'atom-one-dark)
+(setq doom-theme 'doom-vibrant)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -78,8 +78,10 @@
 (require 'sublimity)
 (require 'sublimity-scroll)
 (sublimity-mode 1)
-(setq sublimity-scroll-weight 10
+(setq sublimity-scroll-weight 25
       sublimity-scroll-drift-length 5)
 
 ;; use fill mode for indent guides
-(setq highlight-indent-guides-method 'fill)
+(setq highlight-indent-guides-method 'character)
+;; make the color of the highlight more intense
+(setq highlight-indent-guides-auto-character-face-perc 100)
