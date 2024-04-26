@@ -85,3 +85,17 @@
 (setq highlight-indent-guides-method 'character)
 ;; make the color of the highlight more intense
 (setq highlight-indent-guides-auto-character-face-perc 100)
+
+;; increase length of allowed git message in magit
+(setq git-commit-summary-max-length 999)
+
+;; TODO: fix to make writing helm charts nicer
+;; Create a derived major-mode based on yaml-mode
+;; (define-derived-mode helm-mode yaml-mode "helm"
+;;   "Major mode for editing kubernetes helm templates")
+
+;; (after! eglot
+;;   ;; Ensure eglot runs in helm-mode buffers
+;;   (add-hook 'helm-mode-hook #'eglot-ensure)
+;;   ;; Configure `helm_ls serve` for helm-mode
+;;   (add-to-list 'eglot-server-programs '(helm-mode "helm_ls" "serve")))
