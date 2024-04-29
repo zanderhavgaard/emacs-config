@@ -53,3 +53,6 @@
 
 ;; smoother scrolling
 (package! sublimity)
+
+;; autosave buffers
+(package! super-save)

@@ -99,3 +99,12 @@
 ;;   (add-hook 'helm-mode-hook #'eglot-ensure)
 ;;   ;; Configure `helm_ls serve` for helm-mode
 ;;   (add-to-list 'eglot-server-programs '(helm-mode "helm_ls" "serve")))
+
+;; save buffers to backup files
+;; (setq auto-save-mode 1)
+;; save buffer on focus loss
+;; (setq auto-save-visited-mode 1)
+
+;; enable super-save mode to auto-save buffers
+(super-save-mode +1)
+(setq super-save-auto-save-when-idle t)
