@@ -108,3 +108,6 @@
 ;; enable super-save mode to auto-save buffers
 (super-save-mode +1)
 (setq super-save-auto-save-when-idle t)
+
+;; enable tree-sitter mode for all supported modes
+(setq +tree-sitter-hl-enabled-modes t)
