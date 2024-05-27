@@ -111,3 +111,6 @@
 
 ;; enable tree-sitter mode for all supported modes
 (setq +tree-sitter-hl-enabled-modes t)
+
+;; enable word-wrap (almost) everywhere
+(+global-word-wrap-mode +1)
